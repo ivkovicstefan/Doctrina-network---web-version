@@ -1,0 +1,16 @@
+﻿@model CreateGroupViewModel
+
+@{ 
+    ViewBag.Title = "Create new group - Doctrina";
+}
+
+<div class="container">
+    <h2>Create group</h2>
+    <form method="post" enctype="multipart/form-data" asp-action="Create" asp-controller="Group">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="input-text-custom" />
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>

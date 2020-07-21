@@ -1,0 +1,25 @@
+﻿@model DoctrinaUser
+
+@{
+    ViewBag.Title = $"{Model.FirstName} + {Model.LastName}'s profile - Doctrina";
+}
+
+<div class="container">
+    <div class="row text-white">
+        <div class="col-sm-6 col-md-4 col-lg-3 pt-3 p-2">
+            <div class="bg-gray40 p-3">
+                <img asp-append-version="true" src="~/images/usernoimage.png" class="img-fluid" />
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-8 col-lg-9 pt-3 p-2">
+            <div class="bg-gray40 p-3">
+                <h2>@Model.FirstName @Model.LastName</h2>
+                <p>@Model.City , @Model.Country</p>
+                @if(Model.UserName == User.Identity.Name)
+                {
+                    <p>Change info</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

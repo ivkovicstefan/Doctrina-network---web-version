@@ -1,0 +1,19 @@
+﻿@model GroupViewModel
+
+@{ 
+    ViewBag.Title = Model.GroupName + " - Doctrina";
+}
+
+<div class="container text-white">
+    <div class="row">
+        <div class="col-12">
+            <h2>@Model.GroupName</h2>
+        </div>
+        <div class="col-sm-12">
+            @foreach(var member in Model.Members)
+            {
+                <p>@member.FirstName @member.LastName</p>
+            }
+        </div>
+    </div>
+</div>

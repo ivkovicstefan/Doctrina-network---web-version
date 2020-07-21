@@ -1,0 +1,29 @@
+﻿@model LoginViewModel
+
+@{
+    ViewBag.Title = "Log In - Doctrina";
+}
+
+
+<div id="login-register-box" class="bg-gray40">
+    <div class="row">
+        <div class="col-12">
+            <form method="POST" class="text-white">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control input-text-custom" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control input-text-custom" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="RememberMe"></label>
+                    <input asp-for="RememberMe" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+﻿body {
+    background-color: rgba(50,50,50,1);
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#navbar-logo {
+    width: 100px;
+    margin: 0px 20px 0px 0px;
+    padding: 0px;
+    height: 21px;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem 0.1rem 1rem;
+    font-size: 15px;
+    color: rgba(255,255,255,0.9) !important;
+}
+
+#login-register-box {
+    border-radius:10px;
+    padding:30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:80%;
+    height:auto;
+    box-shadow:rgb(10, 10, 10) 0px 0px 15px;
+}
+
+.login-h{
+    position:absolute;
+    color:white;
+    font-size:25px;
+    top:33%;
+    left:50%;
+    transform:translate(-50%);
+}
+
+.input-text-custom {
+    border: 1px solid rgba(70,70,70,1);
+    background-color: rgba(70,70,70,1);
+    outline: 0px;
+    color:white;
+}
+
+.input-text-custom:focus {
+    border: 1px solid Highlight;
+    background-color: rgba(70,70,70,1);
+    color: white;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
+
+.group-container{
+    background-color:rgba(40,40,40,1);
+    color:white;
+    padding:20px;
+    position:relative;
+}
+
+@media (min-width: 576px) {
+    #login-register-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width:400px;
+    }
+}
+
+
+@media (min-width: 768px) {
+
+}
+
+
+@media (min-width: 992px) {
+
+}
+
+
+@media (min-width: 1200px) {
+}

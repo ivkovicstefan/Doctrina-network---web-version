@@ -1,0 +1,86 @@
+﻿@inject SignInManager<DoctrinaUser> signInManager;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <environment include="Development">
+        <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+              crossorigin="anonymous"
+              asp-fallback-href="~/lib/twitter-bootstrap/css/bootstrap.css"
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute"
+              asp-suppress-fallback-integrity="true">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+                integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+                crossorigin="anonymous"></script>
+    </environment>
+    <link href="~/css/colorScheme.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gray40">
+        <div class="container">
+            <a asp-action="Index" asp-controller="Home">
+                <img id="navbar-logo" src="~/images/Doctrina Logo.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <div class="input-group">
+                            <input id="searchBar" class="input-text-custom mr-sm-2" type="search" placeholder="Search for friends..." aria-label="Search" style="margin-right:0px !important;">
+                            <div class="input-group-append">
+                                <a class="btn bg-gray70 text-white my-2 my-sm-0" href="#" onclick="CreateSearchHref()">Search</a>
+                            </div>
+                        </div>
+                    }
+                </ul>
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @User.Identity.Name
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <form method="POST">
+                                    <a asp-action="Index" asp-controller="Profile" asp-route-userName="@User.Identity.Name" class="dropdown-item">My profile</a>
+                                    <a class="dropdown-item" href="#">Settings</a>
+                                    <button type="submit" asp-action="Logout" asp-controller="Account" class="btn btn-link">Logout @User.Identity.Name</button>
+
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+    <script src="~/js/Layout.js"></script>
+
+</body>
+</html>
