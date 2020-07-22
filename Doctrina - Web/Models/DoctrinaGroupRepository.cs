@@ -20,19 +20,19 @@ namespace Doctrina___Web.Models
         }
         public DoctrinaGroup CreateGroup(CreateGroupViewModel model, string ownerId)
         {
-            DoctrinaGroup newGroup = new DoctrinaGroup
+            DoctrinaGroup result = new DoctrinaGroup
             { 
                 Name = model.Name
             };
 
-            _db.Add<DoctrinaGroup>(newGroup);
+            _db.Add<DoctrinaGroup>(result);
             _db.SaveChanges();
 
-            _db.Entry(newGroup).GetDatabaseValues();
+            _db.Entry(result).GetDatabaseValues();
 
             DoctrinaUserDoctrinaGroup newUserGroup = new DoctrinaUserDoctrinaGroup
             { 
-                DoctrinaGroupId = newGroup.Id,
+                DoctrinaGroupId = result.Id,
                 DoctrinaUserId = ownerId,
                 IsAdmin = true,
                 IsInvitePending = false,
@@ -42,12 +42,13 @@ namespace Doctrina___Web.Models
             _db.Add<DoctrinaUserDoctrinaGroup>(newUserGroup);
             _db.SaveChanges();
 
-            return newGroup;
+            return result;
         }
 
         public DoctrinaGroup GetGroup(string id)
         {
-            return _db.DoctrinaGroups.Where(g => g.Id == id).FirstOrDefault();
+            var result = _db.DoctrinaGroups.Where(g => g.Id == id).FirstOrDefault();
+            return result;
         }
 
         public IList<string> GetGroupMemberIds(string id)

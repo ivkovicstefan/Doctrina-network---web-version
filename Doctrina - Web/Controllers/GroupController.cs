@@ -41,7 +41,7 @@ namespace Doctrina___Web.Controllers
         }
 
         [HttpGet]
-        [Route("/group/{id}")]
+        [Route("/mygroups/{id}")]
         public async Task<IActionResult> Index(string id)
         {
             DoctrinaGroup group = _doctrinaGroupRepository.GetGroup(id);
