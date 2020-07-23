@@ -20,7 +20,7 @@
                         <h5>@profile.UserName, @profile.Country, @profile.City</h5>
                         @if (profile.UserName != User.Identity.Name)
                         {
-                            <button class="btn btn-primary">Send friend request</button>
+                            <a class="btn btn-primary">Send friend request</a>
                         }
                         <a asp-controller="Profile" asp-action="Index" asp-route-userName="@profile.UserName">View profile</a>
                     </div>

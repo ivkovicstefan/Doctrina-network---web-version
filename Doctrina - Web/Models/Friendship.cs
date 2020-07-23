@@ -23,6 +23,6 @@ namespace Doctrina___Web.Models
         /// <summary>
         /// If user got an invite from friend (<-), but he has not accepted yet.
         /// </summary>
-        public bool IsInvitePending { get; set; }
+        public bool IsInvitationPending { get; set; }
     }
 }

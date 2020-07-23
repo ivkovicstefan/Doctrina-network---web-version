@@ -162,7 +162,7 @@ namespace Doctrina___Web.Migrations
                     b.Property<string>("FriendId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsInvitePending")
+                    b.Property<bool>("IsInvitationPending")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsRequestPending")
@@ -172,7 +172,7 @@ namespace Doctrina___Web.Migrations
 
                     b.HasIndex("FriendId");
 
-                    b.ToTable("Friendship");
+                    b.ToTable("Friendships");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -1,4 +1,9 @@
 ﻿@inject SignInManager<DoctrinaUser> signInManager;
+@inject UserManager<DoctrinaUser> userManager;
+
+@{ 
+    var currentUser = await userManager.GetUserAsync(User);
+}
 
 <!DOCTYPE html>
 
@@ -10,6 +15,8 @@
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/jquery-validate/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+
     <environment include="Development">
         <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
         <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
@@ -43,9 +50,6 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
-                    </li>
                     @if (signInManager.IsSignedIn(User))
                     {
                         <div class="input-group">
@@ -58,21 +62,24 @@
                 </ul>
                 @if (signInManager.IsSignedIn(User))
                 {
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @User.Identity.Name
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <form method="POST">
-                                    <a asp-action="Index" asp-controller="Profile" asp-route-userName="@User.Identity.Name" class="dropdown-item">My profile</a>
-                                    <a class="dropdown-item" href="#">Settings</a>
-                                    <button type="submit" asp-action="Logout" asp-controller="Account" class="btn btn-link">Logout @User.Identity.Name</button>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item text-white">
+                    <i class="fas fa-users"></i>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @currentUser.FirstName @currentUser.LastName
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <form method="POST">
+                            <a asp-action="Index" asp-controller="Profile" asp-route-userName="@User.Identity.Name" class="dropdown-item">My profile</a>
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <button type="submit" asp-action="Logout" asp-controller="Account" class="btn btn-link">Logout</button>
 
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
+                        </form>
+                    </div>
+                </li>
+            </ul>
                 }
             </div>
         </div>

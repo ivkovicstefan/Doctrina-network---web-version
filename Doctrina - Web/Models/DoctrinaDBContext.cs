@@ -20,6 +20,7 @@ namespace Doctrina___Web.Models
         public DbSet<DoctrinaGroup> DoctrinaGroups { get; set; }
         public DbSet<DoctrinaUserDoctrinaGroup> DoctrinaUserDoctrinaGroup { get; set; }
         public DbSet<DoctrinaGroupSection> DoctrinaGroupSections { get; set; }
+        public DbSet<Friendship> Friendships { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
