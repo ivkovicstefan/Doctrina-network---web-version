@@ -16,6 +16,15 @@ namespace Doctrina___Web.Models
         /// <summary>
         /// Navigation property for many-to-many relationship users-groups
         /// </summary>
-        public ICollection<DoctrinaUserDoctrinaGroup> DoctrinaUserDoctrinaGroups { get; set; }
+        public virtual ICollection<DoctrinaUserDoctrinaGroup> DoctrinaUserDoctrinaGroups { get; set; }
+        /// <summary>
+        /// Navigation property for many-to-many relationship users-users (friend)
+        /// </summary>
+        public virtual ICollection<Friendship> Friend { get; set; }
+        /// <summary>
+        /// Navigation property for many-to-many relationship users-users (friend of)
+        /// </summary>
+        public virtual ICollection<Friendship> FriendOf { get; set; }
+
     }
 }

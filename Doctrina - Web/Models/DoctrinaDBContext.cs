@@ -21,10 +21,6 @@ namespace Doctrina___Web.Models
         public DbSet<DoctrinaUserDoctrinaGroup> DoctrinaUserDoctrinaGroup { get; set; }
         public DbSet<DoctrinaGroupSection> DoctrinaGroupSections { get; set; }
 
-        /// <summary>
-        /// Configruing Many-To-Many relationship between Users and Groups, and One-To-Many relationship between group and sections
-        /// </summary>
-        /// <param name="builder"></param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<DoctrinaUserDoctrinaGroup>()
@@ -40,6 +36,17 @@ namespace Doctrina___Web.Models
             builder.Entity<DoctrinaGroup>()
                 .HasMany(g => g.DoctrinaSections)
                 .WithOne(s => s.DoctrinaGroup);
+            builder.Entity<Friendship>()
+                .HasKey(ck => new { ck.UserId, ck.FriendId });
+            builder.Entity<Friendship>()
+                .HasOne(f => f.Friend)
+                .WithMany(t => t.FriendOf)
+                .HasForeignKey(fk => fk.FriendId)
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Friendship>()
+                .HasOne(f => f.User)
+                .WithMany(t => t.Friend)
+                .HasForeignKey(fk => fk.UserId);
             base.OnModelCreating(builder);
         }
     }

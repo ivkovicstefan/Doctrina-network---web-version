@@ -4,14 +4,16 @@ using Doctrina___Web.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Doctrina___Web.Migrations
 {
     [DbContext(typeof(DoctrinaDBContext))]
-    partial class DoctrinaDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200723085617_AddingFriendshipTable")]
+    partial class AddingFriendshipTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,12 +163,6 @@ namespace Doctrina___Web.Migrations
 
                     b.Property<string>("FriendId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsInvitePending")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsRequestPending")
-                        .HasColumnType("bit");
 
                     b.HasKey("UserId", "FriendId");
 
