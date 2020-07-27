@@ -45,6 +45,22 @@ namespace Doctrina___Web.Models
             return result;
         }
 
+        public DoctrinaGroupSection CreateSection(CreateSectionViewModel model)
+        {
+            DoctrinaGroup currentGroup = this.GetGroup(model.GroupId);
+
+            DoctrinaGroupSection newSection = new DoctrinaGroupSection
+            {
+                Name = model.Name,
+                DoctrinaGroup = currentGroup
+            };
+
+            _db.Add<DoctrinaGroupSection>(newSection);
+            _db.SaveChanges();
+
+            return newSection;
+        }
+
         public DoctrinaGroup GetGroup(string id)
         {
             var result = _db.DoctrinaGroups.Where(g => g.Id == id).FirstOrDefault();
@@ -66,6 +82,12 @@ namespace Doctrina___Web.Models
         public IList<DoctrinaGroup> GetGroups(string ownerId)
         {
             List<DoctrinaGroup> result = _db.DoctrinaGroups.Where(g => g.DoctrinaUserDoctrinaGroups.Any(u => u.DoctrinaUserId == ownerId)).ToList();
+            return result;
+        }
+
+        public IList<DoctrinaGroupSection> GetSections(string groupId)
+        {
+            List<DoctrinaGroupSection> result = _db.DoctrinaGroupSections.Where(g => g.DoctrinaGroup.Id == groupId).ToList();
             return result;
         }
     }

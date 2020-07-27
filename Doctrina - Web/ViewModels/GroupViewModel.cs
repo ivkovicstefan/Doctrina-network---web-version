@@ -10,5 +10,6 @@ namespace Doctrina___Web.ViewModels
     {
         public string GroupName { get; set; }
         public IList<DoctrinaUser> Members { get; set; }
+        public IList<DoctrinaGroupSection> Sections { get; set; }
     }
 }
