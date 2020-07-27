@@ -1,7 +1,7 @@
 ﻿@model DoctrinaUser
 
 @{
-    ViewBag.Title = $"{Model.FirstName} + {Model.LastName}'s profile - Doctrina";
+    ViewBag.Title = $"{Model.FirstName} {Model.LastName}'s profile - Doctrina";
 }
 
 <div class="container">
@@ -18,6 +18,10 @@
                 @if(Model.UserName == User.Identity.Name)
                 {
                     <p>Change info</p>
+                }
+                else
+                {
+
                 }
             </div>
         </div>

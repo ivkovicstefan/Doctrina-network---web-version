@@ -13,10 +13,12 @@ namespace Doctrina___Web.Controllers
     public class ProfileController : Controller
     {
         private readonly UserManager<DoctrinaUser> _userManager;
+        private readonly IDoctrinaUserRepository _userRepository;
 
-        public ProfileController(UserManager<DoctrinaUser> userManager)
+        public ProfileController(UserManager<DoctrinaUser> userManager, IDoctrinaUserRepository userRepository)
         {
             _userManager = userManager;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -27,5 +29,6 @@ namespace Doctrina___Web.Controllers
             
             return View(user);
         }
+
     }
 }

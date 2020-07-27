@@ -1,13 +1,11 @@
 ﻿@model HomeViewModel
 
-@{
-    ViewBag.Title = "Home - Doctrina";
-}
 
 <div class="container">
     <div class="group-container mt-3 mb-3">
         <div class="row">
-            <div class="col-12"><h5>My groups <span style="font-size:14px;">View all groups</span></h5></div>
+            <div class="col-12"><h5>My groups</h5></div>
+            <a asp-controller="Group" asp-action="MyGroups" class="btn btn-link">view all groups</a>
         </div>
         <div class="row">
             @{ var i = 0; }
@@ -30,6 +28,13 @@
             </div>
         </div>
     </div>
+    <div class="group-container container mt-3 mb-3">
+        <div class="row">
+            <div class="col-12">
+              
+            </div>
 
+        </div>
+    </div>
 
 </div>

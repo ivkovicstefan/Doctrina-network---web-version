@@ -59,5 +59,17 @@ namespace Doctrina___Web.Controllers
 
             return View(model);
         }
+
+        public async Task<IActionResult> MyGroups()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            HomeViewModel model = new HomeViewModel
+            {
+                Groups = _doctrinaGroupRepository.GetGroups(user.Id)
+            };
+
+            return View(model);
+        }
     }
 }
