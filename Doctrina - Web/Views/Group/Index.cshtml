@@ -6,14 +6,35 @@
 
 <div class="container text-white">
     <div class="row">
-        <div class="col-12">
+        <div class="group-container mt-3 col-12">
             <h2>@Model.GroupName</h2>
+            <p>Admins:
+            </p>
         </div>
-        <div class="col-sm-12">
-            @foreach(var member in Model.Members)
+        <div class="col-sm-12 mt-3 group-container">
+            <h2>Members</h2>
+            @foreach (var member in Model.Members)
             {
                 <p>@member.FirstName @member.LastName</p>
             }
         </div>
+
+        <div class="col-sm-12 mt-3 group-container">
+            <h2>Sections:</h2>
+            @if (Model.Sections.Any())
+            {
+                @foreach (var groupSection in Model.Sections)
+                {
+                    <p>@groupSection.Name</p>
+                }
+            }
+            else
+            {
+                <p>There are no sections right now. Wanna create one?</p>
+            }
+
+            <a asp-controller="Group" asp-action="CreateSection" asp-route-id="@ViewBag.GroupId" class="btn btn-light">+New Section</a>
+        </div>
+
     </div>
 </div>

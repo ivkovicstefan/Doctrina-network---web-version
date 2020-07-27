@@ -37,5 +37,20 @@ namespace Doctrina___Web.Models
         /// <param name="id"></param>
         /// <returns></returns>
         public IList<string> GetGroupMemberIds(string id);
+
+        /// <summary>
+        /// Creates and returns section inside the group
+        /// </summary>
+        /// <param name="model">Section info and group Id</param>
+        /// <returns></returns>
+        public DoctrinaGroupSection CreateSection(CreateSectionViewModel model);
+
+        /// <summary>
+        /// Returns collection of sections of a particular group
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
+        public IList<DoctrinaGroupSection> GetSections(string groupId);
+
     }
 }
