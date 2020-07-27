@@ -1,7 +1,7 @@
 ﻿@inject SignInManager<DoctrinaUser> signInManager;
 @inject UserManager<DoctrinaUser> userManager;
 
-@{ 
+@{
     var currentUser = await userManager.GetUserAsync(User);
 }
 
@@ -47,7 +47,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     @if (signInManager.IsSignedIn(User))
@@ -62,24 +61,24 @@
                 </ul>
                 @if (signInManager.IsSignedIn(User))
                 {
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item text-white">
-                    <i class="fas fa-users"></i>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @currentUser.FirstName @currentUser.LastName
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <form method="POST">
-                            <a asp-action="Index" asp-controller="Profile" asp-route-userName="@User.Identity.Name" class="dropdown-item">My profile</a>
-                            <a class="dropdown-item" href="#">Settings</a>
-                            <button type="submit" asp-action="Logout" asp-controller="Account" class="btn btn-link">Logout</button>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item text-white">
+                            <i class="fas fa-users"></i>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @currentUser.FirstName @currentUser.LastName
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <form method="POST">
+                                    <a asp-action="Index" asp-controller="Profile" asp-route-userName="@User.Identity.Name" class="dropdown-item">My profile</a>
+                                    <a class="dropdown-item" href="#">Settings</a>
+                                    <button type="submit" asp-action="Logout" asp-controller="Account" class="btn btn-link">Logout</button>
 
-                        </form>
-                    </div>
-                </li>
-            </ul>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
                 }
             </div>
         </div>

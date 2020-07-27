@@ -26,7 +26,7 @@ namespace Doctrina___Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
-            services.AddDbContextPool<DoctrinaDBContext>(options => options.UseSqlServer(_config.GetConnectionString("LocalServer")));
+            services.AddDbContextPool<DoctrinaDBContext>(options => options.UseSqlServer(_config.GetConnectionString("AzureServer")));
             services.AddIdentity<DoctrinaUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 10;

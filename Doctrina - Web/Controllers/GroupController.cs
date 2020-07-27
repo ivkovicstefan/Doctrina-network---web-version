@@ -48,7 +48,8 @@ namespace Doctrina___Web.Controllers
             GroupViewModel model = new GroupViewModel
             {
                 GroupName = group.Name,
-                Members = new List<DoctrinaUser>()
+                Members = new List<DoctrinaUser>(),
+                Sections = _doctrinaGroupRepository.GetSections(id)
             };
 
             foreach(var userId in _doctrinaGroupRepository.GetGroupMemberIds(id))
@@ -60,6 +61,8 @@ namespace Doctrina___Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Route("/mygroups/all")]
         public async Task<IActionResult> MyGroups()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -68,6 +71,32 @@ namespace Doctrina___Web.Controllers
             {
                 Groups = _doctrinaGroupRepository.GetGroups(user.Id)
             };
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [Route("mygroups/createsection/{id}")]
+        public IActionResult CreateSection(string id)
+        {
+            CreateSectionViewModel model = new CreateSectionViewModel
+            {
+                GroupId = id
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("mygroups/createsection/{id}")]
+        public IActionResult CreateSection(CreateSectionViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                _doctrinaGroupRepository.CreateSection(model);
+
+                return RedirectToAction("Index", "Group", $"{model.GroupId}");
+            }
 
             return View(model);
         }

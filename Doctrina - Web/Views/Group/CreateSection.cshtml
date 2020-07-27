@@ -1,0 +1,20 @@
+﻿@model CreateSectionViewModel
+
+@{ 
+    ViewBag.Title = "New section - Doctrina";
+}
+
+<div class="container text-white">
+    <div class="row">
+        <div class="col-12">
+            <h3>Create new section</h3>
+            <form method="post" enctype="multipart/form-data" asp-controller="Group" asp-action="CreateSection">
+                <input hidden asp-for="@Model.GroupId" />
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="input-text-custom" />
+                <span asp-validation-for="Name"></span>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
