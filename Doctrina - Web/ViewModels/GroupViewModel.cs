@@ -8,7 +8,7 @@ namespace Doctrina___Web.ViewModels
 {
     public class GroupViewModel
     {
-        public string GroupName { get; set; }
+        public DoctrinaGroup Group { get; set; }
         public IList<DoctrinaUser> Members { get; set; }
         public IList<DoctrinaGroupSection> Sections { get; set; }
     }

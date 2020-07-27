@@ -47,7 +47,7 @@ namespace Doctrina___Web.Controllers
             DoctrinaGroup group = _doctrinaGroupRepository.GetGroup(id);
             GroupViewModel model = new GroupViewModel
             {
-                GroupName = group.Name,
+                Group = group,
                 Members = new List<DoctrinaUser>(),
                 Sections = _doctrinaGroupRepository.GetSections(id)
             };

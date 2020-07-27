@@ -1,13 +1,13 @@
 ﻿@model GroupViewModel
 
 @{ 
-    ViewBag.Title = Model.GroupName + " - Doctrina";
+    ViewBag.Title = Model.Group.Name + " - Doctrina";
 }
 
 <div class="container text-white">
     <div class="row">
         <div class="group-container mt-3 col-12">
-            <h2>@Model.GroupName</h2>
+            <h2>@Model.Group.Name</h2>
             <p>Admins:
             </p>
         </div>
@@ -33,7 +33,7 @@
                 <p>There are no sections right now. Wanna create one?</p>
             }
 
-            <a asp-controller="Group" asp-action="CreateSection" asp-route-id="@ViewBag.GroupId" class="btn btn-light">+New Section</a>
+            <a asp-controller="Group" asp-action="CreateSection" asp-route-id="@Model.Group.Id" class="btn btn-light">+ New Section</a>
         </div>
 
     </div>
