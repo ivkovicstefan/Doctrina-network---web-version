@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Doctrina___Web.Hubs;
 using Doctrina___Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,7 @@ namespace Doctrina___Web
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
             services.AddDbContextPool<DoctrinaDBContext>(options => options.UseSqlServer(_config.GetConnectionString("LocalServer")));
             services.AddIdentity<DoctrinaUser, IdentityRole>(options =>
             {
@@ -55,6 +57,12 @@ namespace Doctrina___Web
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<NotificationHub>("/notificationHub");
+            });
         }
     }
 }

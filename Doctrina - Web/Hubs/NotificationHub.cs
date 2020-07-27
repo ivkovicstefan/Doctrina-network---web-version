@@ -8,6 +8,6 @@ namespace Doctrina___Web.Hubs
 {
     public class NotificationHub: Hub
     {
-        
+
     }
 }
