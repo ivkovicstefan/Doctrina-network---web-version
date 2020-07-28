@@ -85,6 +85,12 @@ namespace Doctrina___Web.Models
             return result;
         }
 
+        public DoctrinaGroupSection GetSection(int id)
+        {
+            DoctrinaGroupSection result = _db.DoctrinaGroupSections.Where(s => s.Id == id).FirstOrDefault();
+            return result;
+        }
+
         public IList<DoctrinaGroupSection> GetSections(string groupId)
         {
             List<DoctrinaGroupSection> result = _db.DoctrinaGroupSections.Where(g => g.DoctrinaGroup.Id == groupId).ToList();

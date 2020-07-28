@@ -46,6 +46,13 @@ namespace Doctrina___Web.Models
         public DoctrinaGroupSection CreateSection(CreateSectionViewModel model);
 
         /// <summary>
+        /// Returns DoctrinaGroupSection object by provided id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public DoctrinaGroupSection GetSection(int id);
+
+        /// <summary>
         /// Returns collection of sections of a particular group
         /// </summary>
         /// <param name="groupId"></param>
