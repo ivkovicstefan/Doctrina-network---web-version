@@ -64,9 +64,22 @@ namespace Doctrina___Web.Models
         public void DeleteGroup(string id)
         {
             DoctrinaGroup group = _db.Find<DoctrinaGroup>(id);
-            var result = _db.Remove<DoctrinaGroup>(group);
+
+            IList<DoctrinaGroupSection> sections = _db.DoctrinaGroupSections.Where(s => s.DoctrinaGroup.Id == group.Id).ToList();
+            IList<DoctrinaUserDoctrinaGroup> userGroupRelations = _db.DoctrinaUserDoctrinaGroup.Where(gu => gu.DoctrinaGroupId == group.Id).ToList();
+
+            foreach(var section in sections)
+            {
+                _db.Remove<DoctrinaGroupSection>(section);
+            }
+
+            foreach (var relation in userGroupRelations)
+            {
+                _db.Remove<DoctrinaUserDoctrinaGroup>(relation);
+            }
+
+            _db.Remove<DoctrinaGroup>(group);          
             _db.SaveChanges();
-            // Implement other features
         }
 
         public DoctrinaGroup GetGroup(string id)
