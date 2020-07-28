@@ -59,5 +59,18 @@ namespace Doctrina___Web.Models
         /// <returns></returns>
         public IList<DoctrinaGroupSection> GetSections(string groupId);
 
+        /// <summary>
+        /// Deletes the group with given id and all relationships
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteGroup(string id);
+
+        /// <summary>
+        /// Updates group information, updates only non-null properties
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="newModel">model with updated info</param>
+        public void UpdateGroup(string id, GroupSettingsViewModel newModel);
+
     }
 }

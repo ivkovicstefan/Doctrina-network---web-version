@@ -61,6 +61,14 @@ namespace Doctrina___Web.Models
             return newSection;
         }
 
+        public void DeleteGroup(string id)
+        {
+            DoctrinaGroup group = _db.Find<DoctrinaGroup>(id);
+            var result = _db.Remove<DoctrinaGroup>(group);
+            _db.SaveChanges();
+            // Implement other features
+        }
+
         public DoctrinaGroup GetGroup(string id)
         {
             var result = _db.DoctrinaGroups.Where(g => g.Id == id).FirstOrDefault();
@@ -95,6 +103,23 @@ namespace Doctrina___Web.Models
         {
             List<DoctrinaGroupSection> result = _db.DoctrinaGroupSections.Where(g => g.DoctrinaGroup.Id == groupId).ToList();
             return result;
+        }
+
+        public void UpdateGroup(string id, GroupSettingsViewModel newModel)
+        {
+            DoctrinaGroup group = _db.Find<DoctrinaGroup>(id);
+
+            if(group!=null)
+            {
+                if(!string.IsNullOrEmpty(newModel.NewName))
+                {
+                    group.Name = newModel.NewName;
+                }
+
+                _db.DoctrinaGroups.Attach(group);
+                _db.Entry(group).State = EntityState.Modified;
+                _db.SaveChanges();
+            }
         }
     }
 }

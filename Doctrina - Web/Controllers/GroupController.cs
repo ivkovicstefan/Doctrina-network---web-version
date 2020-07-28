@@ -1,5 +1,6 @@
 ﻿using Doctrina___Web.Models;
 using Doctrina___Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Doctrina___Web.Controllers
 {
+    [Authorize]
     public class GroupController : Controller
     {
         private readonly IDoctrinaGroupRepository _doctrinaGroupRepository;
@@ -19,6 +21,7 @@ namespace Doctrina___Web.Controllers
             _doctrinaGroupRepository = doctrinaGroupRepository;
             _userManager = userManager;
         }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -59,6 +62,27 @@ namespace Doctrina___Web.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateSettings(GroupViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                if(!string.IsNullOrEmpty(model.Settings.NewName))
+                {
+                    _doctrinaGroupRepository.UpdateGroup(model.Group.Id, model.Settings);
+                }
+            }
+
+            return Redirect($"/mygroups/{model.Group.Id}");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteGroup(GroupViewModel model)
+        {
+            _doctrinaGroupRepository.DeleteGroup(model.Group.Id);
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

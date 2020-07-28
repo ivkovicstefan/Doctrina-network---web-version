@@ -4,10 +4,27 @@
     ViewBag.Title = Model.Group.Name + " - Doctrina";
 }
 
+<!-- Settings (invisible) container -->
+<div id="GroupSettingsContainer" class="group-settings-container bg-dark">
+    <button onclick="HideGroupSettings()">Close</button>
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="POST" enctype="multipart/form-data">
+                <input hidden asp-for="@Model.Group.Id" />
+                <label asp-for="@Model.Settings.NewName"></label>
+                <input asp-for="@Model.Settings.NewName" class="input-text-custom" />
+                <button asp-action="UpdateSettings" asp-controller="Group" type="submit" class="btn btn-primary">Update settings</button>
+                <button asp-action="DeleteGroup" asp-controller="Group" type="submit" class="btn btn-danger">Delete group</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="container text-white">
     <div class="row">
         <div class="group-container mt-3 col-12">
             <h2>@Model.Group.Name</h2>
+            <a class="btn btn-link" onclick="ShowGroupSettings()">Settings</a>
             <p>Admins:
             </p>
         </div>
@@ -41,3 +58,8 @@
 
     </div>
 </div>
+
+@section Scripts
+{
+    <script src="~/js/Group.js"></script>
+}
