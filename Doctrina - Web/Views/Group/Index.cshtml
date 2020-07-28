@@ -25,7 +25,10 @@
             {
                 @foreach (var groupSection in Model.Sections)
                 {
-                    <p>@groupSection.Name</p>
+                    <a asp-action="Index" 
+                       asp-controller="Section" 
+                       asp-route-groupId="@Model.Group.Id" 
+                       asp-route-sectionId="@groupSection.Id" class="btn btn-link">@groupSection.Name</a>
                 }
             }
             else
