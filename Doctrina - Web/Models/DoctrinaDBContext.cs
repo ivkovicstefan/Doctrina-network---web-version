@@ -15,12 +15,13 @@ namespace Doctrina___Web.Models
         {
 
         }
-        public DbSet<DoctrinaUser> DoctrinaUsers { get; set; }
 
+        public DbSet<DoctrinaUser> DoctrinaUsers { get; set; }
         public DbSet<DoctrinaGroup> DoctrinaGroups { get; set; }
         public DbSet<DoctrinaUserDoctrinaGroup> DoctrinaUserDoctrinaGroup { get; set; }
         public DbSet<DoctrinaGroupSection> DoctrinaGroupSections { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
+        public DbSet<DoctrinaScript> DoctrinaScripts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
