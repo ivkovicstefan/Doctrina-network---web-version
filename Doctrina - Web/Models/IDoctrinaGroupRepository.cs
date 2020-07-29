@@ -66,11 +66,24 @@ namespace Doctrina___Web.Models
         public void DeleteGroup(string id);
 
         /// <summary>
+        /// Deletes the section with given id
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteSection(int id);
+
+        /// <summary>
         /// Updates group information, updates only non-null properties
         /// </summary>
         /// <param name="id"></param>
         /// <param name="newModel">model with updated info</param>
         public void UpdateGroup(string id, GroupSettingsViewModel newModel);
+
+        /// <summary>
+        /// Updates section information, updates only non-null properties
+        /// </summary>
+        /// <param name="id">Section Id</param>
+        /// <param name="sectionSettings">model with updated info</param>
+        void UpdateSection(int id, SectionSettingsViewModel sectionSettings);
 
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Doctrina___Web.Controllers
 {
-    public class SectionController:Controller
+    public class SectionController : Controller
     {
         private readonly IDoctrinaGroupRepository _doctrinaGroupRepository;
 
@@ -24,13 +24,35 @@ namespace Doctrina___Web.Controllers
             DoctrinaGroup currentGroup = _doctrinaGroupRepository.GetGroup(groupId);
             DoctrinaGroupSection currentSection = _doctrinaGroupRepository.GetSection(sectionId);
 
-            ScriptIndexViewModel model = new ScriptIndexViewModel
+            SectionIndexViewModel model = new SectionIndexViewModel
             {
                 Group = currentGroup,
                 CurrentSection = currentSection
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateSettings(SectionIndexViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                if (!string.IsNullOrEmpty(model.SectionSettings.NewName))
+                {
+                    _doctrinaGroupRepository.UpdateSection(model.CurrentSection.Id, model.SectionSettings);
+                }
+            }
+
+            return Redirect($"/mygroups/{model.Group.Id}/{model.CurrentSection.Id}");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteSection(SectionIndexViewModel model)
+        {
+            _doctrinaGroupRepository.DeleteSection(model.CurrentSection.Id);
+
+            return Redirect($"/mygroups/{model.Group.Id}");
         }
     }
 }
