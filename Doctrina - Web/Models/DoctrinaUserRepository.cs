@@ -14,9 +14,9 @@ namespace Doctrina___Web.Models
         {
             _db = db;
         }
-        public IEnumerable<DoctrinaUser> SearchUsers(string searchText)
+        public IList<DoctrinaUser> SearchUsers(string searchText)
         {
-            var result = _db.Users.Where(u => u.UserName.Contains(searchText));
+            IList<DoctrinaUser> result = _db.Users.Where(u => u.UserName.Contains(searchText)).ToList();
             return result;
         }
 

@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Doctrina___Web.Models
 {
@@ -12,11 +14,14 @@ namespace Doctrina___Web.Models
     {
         private readonly DoctrinaDBContext _db;
         private readonly UserManager<DoctrinaUser> _userManager;
+        [Obsolete]
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public DoctrinaGroupRepository(DoctrinaDBContext db, UserManager<DoctrinaUser> userManager)
+        public DoctrinaGroupRepository(DoctrinaDBContext db, UserManager<DoctrinaUser> userManager, IHostingEnvironment hostingEnvironment)
         {
             _db = db;
             _userManager = userManager;
+            _hostingEnvironment = hostingEnvironment;
         }
         public DoctrinaGroup CreateGroup(CreateGroupViewModel model, string ownerId)
         {
@@ -42,6 +47,39 @@ namespace Doctrina___Web.Models
             _db.Add<DoctrinaUserDoctrinaGroup>(newUserGroup);
             _db.SaveChanges();
 
+            string folderPath = Path.Combine(_hostingEnvironment.WebRootPath, "DynamicResources/groups", result.Id);
+            Directory.CreateDirectory(folderPath);
+
+            return result;
+        }
+
+        public DoctrinaScript CreateScript(CreateScriptViewModel model)
+        {
+            DoctrinaScript newScript = new DoctrinaScript
+            {
+                Title = model.Title,
+                Creator = model.Creator,
+                DateCreated = model.DateCreated,
+                DoctrinaGroupSection = GetSection(model.SectionId)
+            };
+
+            _db.Add<DoctrinaScript>(newScript);
+            _db.SaveChanges();
+
+            DoctrinaScript result = _db.DoctrinaScripts
+                .Where(s => s.Creator == model.Creator && s.DateCreated == model.DateCreated && s.Title == model.Title)
+                .FirstOrDefault();
+
+            string filePath = Path.Combine(_hostingEnvironment.WebRootPath,
+                $"DynamicResources/groups/{model.GroupId}/{model.SectionId}/{result.Id}.html");
+            Directory.CreateDirectory(filePath);
+
+            result.FilePath = filePath;
+
+            _db.DoctrinaScripts.Attach(result);
+            _db.Entry(result).State = EntityState.Modified;
+            _db.SaveChanges();
+
             return result;
         }
 
@@ -58,6 +96,9 @@ namespace Doctrina___Web.Models
             _db.Add<DoctrinaGroupSection>(newSection);
             _db.SaveChanges();
 
+            string folderPath = Path.Combine(_hostingEnvironment.WebRootPath, $"DynamicResources/groups/{currentGroup.Id}/{newSection.Id}");
+            Directory.CreateDirectory(folderPath);
+
             return newSection;
         }
 
@@ -70,7 +111,7 @@ namespace Doctrina___Web.Models
 
             foreach(var section in sections)
             {
-                _db.Remove<DoctrinaGroupSection>(section);
+                DeleteSection(section.Id);
             }
 
             foreach (var relation in userGroupRelations)
@@ -82,9 +123,23 @@ namespace Doctrina___Web.Models
             _db.SaveChanges();
         }
 
+        public void DeleteScript(string id)
+        {
+            DoctrinaScript script = _db.Find<DoctrinaScript>(id);
+
+            _db.Remove<DoctrinaScript>(script);
+            _db.SaveChanges();
+        }
+
         public void DeleteSection(int id)
         {
             DoctrinaGroupSection section = _db.Find<DoctrinaGroupSection>(id);
+            IList<DoctrinaScript> scripts = GetScripts(id);
+
+            foreach(var script in scripts)
+            {
+                DeleteScript(script.Id);
+            }
 
             _db.Remove<DoctrinaGroupSection>(section);
             _db.SaveChanges();
@@ -111,6 +166,18 @@ namespace Doctrina___Web.Models
         public IList<DoctrinaGroup> GetGroups(string ownerId)
         {
             List<DoctrinaGroup> result = _db.DoctrinaGroups.Where(g => g.DoctrinaUserDoctrinaGroups.Any(u => u.DoctrinaUserId == ownerId)).ToList();
+            return result;
+        }
+
+        public DoctrinaScript GetScript(string id)
+        {
+            DoctrinaScript result = _db.DoctrinaScripts.Where(s => s.Id == id).FirstOrDefault();
+            return result;
+        }
+
+        public IList<DoctrinaScript> GetScripts(int sectionId)
+        {
+            List<DoctrinaScript> result = _db.DoctrinaScripts.Where(s => s.DoctrinaGroupSection.Id == sectionId).ToList();
             return result;
         }
 
@@ -143,6 +210,15 @@ namespace Doctrina___Web.Models
             }
         }
 
+        public DoctrinaScript UpdateScript(EditScriptViewModel model)
+        {
+            _db.DoctrinaScripts.Attach(model.ThisScript);
+            _db.Entry(model.ThisScript).State = EntityState.Modified;
+            _db.SaveChanges();
+
+            return model.ThisScript;
+        }
+
         public void UpdateSection(int id, SectionSettingsViewModel newModel)
         {
             DoctrinaGroupSection section = _db.Find<DoctrinaGroupSection>(id);
@@ -160,6 +236,5 @@ namespace Doctrina___Web.Models
             }
         }
 
-        
     }
 }
