@@ -33,15 +33,19 @@ namespace Doctrina___Web.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        [Route("/search/{searchText}")]
-        public IActionResult Search(string searchText)
+        [HttpPost]
+        public IActionResult Search(HomeViewModel model)
         {
-            HomeSearchViewModel model = new HomeSearchViewModel
-            {
-                Results = _userRepository.SearchUsers(searchText),
-                Query = searchText
-            };
+            return Redirect($"/search/{model.Query}");
+        }
+
+        [HttpGet]
+        [Route("/search/{queryString}")]
+        public IActionResult Search(string queryString)
+        {
+            HomeViewModel model = new HomeViewModel();
+            model.Results = _userRepository.SearchUsers(queryString);
+
             return View(model);
         }
 

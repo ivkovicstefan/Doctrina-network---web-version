@@ -22,24 +22,57 @@
     </div>
 </div>
 
-<div class="container text-white">
+<!-- CreateScript (invisible) container -->
+<div id="CreateScriptContainer" class="create-script-container bg-dark">
+    <button onclick="HideCreateScript()">Close</button>
     <div class="row">
+        <div class="col-sm-12">
+            <form method="post" enctype="multipart/form-data">
+                <input hidden asp-for="@Model.Group.Id" />
+                <input hidden asp-for="@Model.CurrentSection.Id" />
+                <label asp-for="@Model.CreatedScript.Title"></label>
+                <input asp-for="@Model.CreatedScript.Title" class="input-text-custom" />
+                <button asp-action="CreateScript" asp-controller="Section" type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container text-white">
+    <div class="group-container row mt-3">
         <div class="col-12">
             <h3>@Model.Group.Name</h3>
         </div>
     </div>
-    <div class="row">
+    <div class="group-container row mt-3">
         <div class="col-12">
             <h3>@Model.CurrentSection.Name</h3>
             <a class="btn btn-link" onclick="ShowGroupSettings()">Settings</a>
         </div>
     </div>
-    <div class="row">
+    <div class="group-container row mt-3">
         <div class="col-12">
             Scripts
+            @if(Model.Scripts.Any())
+            {
+                @foreach(var script in Model.Scripts)
+                {
+                    <a asp-action="EditScript" 
+                       asp-controller="Section" 
+                       asp-route-groupId="@Model.Group.Id"
+                       asp-route-sectionId="@Model.CurrentSection.Id"
+                       asp-route-scriptId="@script.Id"
+                       class="btn btn-link">@script.Title</a>
+                }
+            }
+            else
+            {
+                <p>Currently, there are no scripts. Wanna make one?</p>
+            }
+            <a asp-controller="Section" asp-action="CreateScript" class="btn btn-link" onclick="ShowCreateScript()">+ New Script</a>
         </div>
     </div>
-    <div class="row">
+    <div class="group-container row mt-3">
         <div class="col-12">
             Quizes
         </div>

@@ -9,6 +9,8 @@ namespace Doctrina___Web.ViewModels
     public class HomeViewModel
     {
         public IList<DoctrinaGroup> Groups { get; set; }
+        public string Query { get; set; }
+        public IList<DoctrinaUser> Results { get; set; }
 
     }
 }

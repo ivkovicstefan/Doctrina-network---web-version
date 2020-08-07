@@ -1,4 +1,5 @@
-﻿function CreateSearchHref() {
+﻿
+function CreateSearchHref() {
     var url = '/search';
     var searchText = $('#searchBar').val();
     console.log(window.location.href);

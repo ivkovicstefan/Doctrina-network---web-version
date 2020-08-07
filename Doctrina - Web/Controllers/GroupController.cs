@@ -23,20 +23,23 @@ namespace Doctrina___Web.Controllers
         }
 
         [HttpGet]
+        [Route("/groups/create")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Route("/groups/create")]
         public async Task<IActionResult> Create(CreateGroupViewModel model)
         {
             if(ModelState.IsValid)
             {
                 var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (_doctrinaGroupRepository.CreateGroup(model, currentUser.Id) != null)
+                DoctrinaGroup newGroup = _doctrinaGroupRepository.CreateGroup(model, currentUser.Id);
+                if (newGroup != null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return Redirect($"/groups/{newGroup.Id}");
                 }
             }
 
@@ -44,7 +47,7 @@ namespace Doctrina___Web.Controllers
         }
 
         [HttpGet]
-        [Route("/mygroups/{id}")]
+        [Route("/groups/{id}")]
         public async Task<IActionResult> Index(string id)
         {
             DoctrinaGroup group = _doctrinaGroupRepository.GetGroup(id);
@@ -75,7 +78,7 @@ namespace Doctrina___Web.Controllers
                 }
             }
 
-            return Redirect($"/mygroups/{model.Group.Id}");
+            return Redirect($"/groups/{model.Group.Id}");
         }
 
         [HttpPost]
@@ -86,7 +89,7 @@ namespace Doctrina___Web.Controllers
         }
 
         [HttpGet]
-        [Route("/mygroups/all")]
+        [Route("/groups/all")]
         public async Task<IActionResult> MyGroups()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -100,7 +103,7 @@ namespace Doctrina___Web.Controllers
         }
 
         [HttpGet]
-        [Route("mygroups/createsection/{id}")]
+        [Route("groups/{id}/sections/create")]
         public IActionResult CreateSection(string id)
         {
             CreateSectionViewModel model = new CreateSectionViewModel
@@ -112,7 +115,7 @@ namespace Doctrina___Web.Controllers
         }
 
         [HttpPost]
-        [Route("mygroups/createsection/{id}")]
+        [Route("groups/{id}/sections/create")]
         public IActionResult CreateSection(CreateSectionViewModel model)
         {
             if(ModelState.IsValid)

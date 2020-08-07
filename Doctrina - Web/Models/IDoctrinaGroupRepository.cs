@@ -83,7 +83,41 @@ namespace Doctrina___Web.Models
         /// </summary>
         /// <param name="id">Section Id</param>
         /// <param name="sectionSettings">model with updated info</param>
-        void UpdateSection(int id, SectionSettingsViewModel sectionSettings);
+        public void UpdateSection(int id, SectionSettingsViewModel sectionSettings);
+
+        /// <summary>
+        /// Creates new script inside section.
+        /// </summary>
+        /// <param name="model"></param>
+        public DoctrinaScript CreateScript(CreateScriptViewModel model);
+
+        /// <summary>
+        /// Returns script by provided id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public DoctrinaScript GetScript(string id);
+
+        /// <summary>
+        /// Returns scripts for requested section
+        /// </summary>
+        /// <param name="sectionId">Id of particular section</param>
+        /// <returns></returns>
+        public IList<DoctrinaScript> GetScripts(int sectionId);
+
+        /// <summary>
+        /// Updates and returns script by proided id
+        /// </summary>
+        /// <param name="model">model with updated info</param>
+        /// <returns></returns>
+        public DoctrinaScript UpdateScript(EditScriptViewModel model);
+
+        /// <summary>
+        /// Finds and deletes a script by provided id
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteScript(string id);
+
 
     }
 }

@@ -11,7 +11,11 @@ namespace Doctrina___Web.ViewModels
     {
         public DoctrinaGroupSection CurrentSection { get; set; }
 
+        public IList<DoctrinaScript> Scripts { get; set; }
+
         public SectionSettingsViewModel SectionSettings { get; set; }
+
+        public CreateScriptViewModel CreatedScript { get; set; }
 
     }
 

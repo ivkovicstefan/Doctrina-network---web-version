@@ -1,0 +1,26 @@
+﻿@model EditScriptViewModel
+
+@{ 
+    ViewBag.Title = $"{Model.ThisScript.Title} - Doctrina";
+}
+
+<div class="container text-white">
+    <form method="post" enctype="multipart/form-data">
+        <input hidden asp-for="@Model.ThisScript.Id" />
+        <input hidden asp-for="@Model.GroupId" />
+        <input hidden asp-for="@Model.SectionId" />
+        <div class="form-group">
+            <label asp-for="@Model.ThisScript.Title"></label>
+            <div class="col-12">
+                <input asp-for="@Model.ThisScript.Title" class="input-text-custom w-100" />
+            </div>
+            <button asp-action="EditScript" asp-controller="Section" type="submit" class="btn btn-primary">Save</button>
+            <button asp-action="DeleteScript" asp-controller="Section" type="submit" class="btn btn-primary">Delete</button>
+
+        </div>
+        <iframe class="col-12 bg-white" src="@Model.ThisScript.FilePath">
+        </iframe>
+
+    </form>
+    
+</div>

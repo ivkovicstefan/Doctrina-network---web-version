@@ -12,7 +12,7 @@ namespace Doctrina___Web.Models
         /// </summary>
         /// <param name="searchText">Searching keyword, can be partial</param>
         /// <returns></returns>
-        public IEnumerable<DoctrinaUser> SearchUsers(string searchText);
+        public IList<DoctrinaUser> SearchUsers(string searchText);
         /// <summary>
         /// Creates two records in Friendship table. Records are in both directions.
         /// </summary>
