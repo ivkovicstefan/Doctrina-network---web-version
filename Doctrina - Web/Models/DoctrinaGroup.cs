@@ -12,11 +12,11 @@ namespace Doctrina___Web.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
         public string Name { get; set; }
-        public ICollection<DoctrinaGroupSection> DoctrinaSections { get; set; }
+        public virtual ICollection<DoctrinaGroupSection> DoctrinaSections { get; set; }
         /// <summary>
         /// Navigation property for many-to-many relationship users-groups
         /// </summary>
-        public ICollection<DoctrinaUserDoctrinaGroup> DoctrinaUserDoctrinaGroups { get; set; }
+        public virtual ICollection<DoctrinaUserDoctrinaGroup> DoctrinaUserDoctrinaGroups { get; set; }
 
     }
 }

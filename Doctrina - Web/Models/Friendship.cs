@@ -13,9 +13,9 @@ namespace Doctrina___Web.Models
     public class Friendship
     {
         public string UserId { get; set; }
-        public DoctrinaUser User { get; set; }
+        public virtual DoctrinaUser User { get; set; }
         public string FriendId { get; set; }
-        public DoctrinaUser Friend { get; set; }
+        public virtual DoctrinaUser Friend { get; set; }
         /// <summary>
         /// If user sent an invite to friend (->), but friend has not accepted yet
         /// </summary>

@@ -11,9 +11,9 @@ namespace Doctrina___Web.Models
     public class DoctrinaUserDoctrinaGroup
     {
         public string DoctrinaUserId { get; set; }
-        public DoctrinaUser DoctrinaUser { get; set; }
+        public virtual DoctrinaUser DoctrinaUser { get; set; }
         public string DoctrinaGroupId { get; set; }
-        public DoctrinaGroup DoctrinaGroup { get; set; }
+        public virtual DoctrinaGroup DoctrinaGroup { get; set; }
         /// <summary>
         /// Checking if user is also an administrator
         /// </summary>

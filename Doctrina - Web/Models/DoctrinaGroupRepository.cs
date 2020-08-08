@@ -72,7 +72,8 @@ namespace Doctrina___Web.Models
 
             string filePath = Path.Combine(_hostingEnvironment.WebRootPath,
                 $"DynamicResources/groups/{model.GroupId}/{model.SectionId}/{result.Id}.html");
-            Directory.CreateDirectory(filePath);
+
+            using (FileStream fs = File.Create(filePath)) { }
 
             result.FilePath = filePath;
 
@@ -119,6 +120,10 @@ namespace Doctrina___Web.Models
                 _db.Remove<DoctrinaUserDoctrinaGroup>(relation);
             }
 
+            string folderPath = Path.Combine(_hostingEnvironment.WebRootPath, "DynamicResources/groups", group.Id);
+
+            Directory.Delete(folderPath);
+
             _db.Remove<DoctrinaGroup>(group);          
             _db.SaveChanges();
         }
@@ -126,6 +131,9 @@ namespace Doctrina___Web.Models
         public void DeleteScript(string id)
         {
             DoctrinaScript script = _db.Find<DoctrinaScript>(id);
+
+            File.SetAttributes(script.FilePath, FileAttributes.Normal);
+            File.Delete(script.FilePath);
 
             _db.Remove<DoctrinaScript>(script);
             _db.SaveChanges();
@@ -140,6 +148,10 @@ namespace Doctrina___Web.Models
             {
                 DeleteScript(script.Id);
             }
+
+            string folderPath = Path.Combine(_hostingEnvironment.WebRootPath, $"DynamicResources/groups/{section.DoctrinaGroup.Id}/{section.Id}");
+            Directory.Delete(folderPath);
+
 
             _db.Remove<DoctrinaGroupSection>(section);
             _db.SaveChanges();
