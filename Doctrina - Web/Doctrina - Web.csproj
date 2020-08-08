@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\DynamicResources\groups\b023f485-da54-482e-bf01-e85f5947b468\20\" />
     <Folder Include="wwwroot\DynamicResources\Images\" />
     <Folder Include="wwwroot\DynamicResources\Scripts\" />
   </ItemGroup>

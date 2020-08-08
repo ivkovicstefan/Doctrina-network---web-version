@@ -14,9 +14,13 @@ namespace Doctrina___Web.Models
         public virtual DoctrinaUser Creator { get; set; }
         public virtual DoctrinaUser LastModifiedBy { get; set; }
         /// <summary>
-        /// Path to the actual script file created on server (.html file)
+        /// Server-side path to the file (relative)
         /// </summary>
-        public string FilePath { get; set; }
+        public string WebRootPath { get; set; }
+        /// <summary>
+        /// Absolute (full) path to the file
+        /// </summary>
+        public string AbsolutePath { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateLastModified { get; set; }
         public virtual DoctrinaGroupSection DoctrinaGroupSection { get; set; }

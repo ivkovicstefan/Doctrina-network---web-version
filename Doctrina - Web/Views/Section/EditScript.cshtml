@@ -1,6 +1,6 @@
 ﻿@model EditScriptViewModel
 
-@{ 
+@{
     ViewBag.Title = $"{Model.ThisScript.Title} - Doctrina";
 }
 
@@ -18,9 +18,22 @@
             <button asp-action="DeleteScript" asp-controller="Section" type="submit" class="btn btn-primary">Delete</button>
 
         </div>
-        <iframe class="col-12 bg-white" src="@Model.ThisScript.FilePath">
+        <div>
+            <button type="button"><i onclick="execCmd('bold')" class="fa fa-bold" aria-hidden="true"></i></button>
+        </div>
+        <iframe frameborder="0" 
+                id="TextEditPlace" 
+                name="textEditor" 
+                class="col-12 bg-white" 
+                src="@Url.Content(Model.ThisScript.WebRootPath)"
+                height="800px">
         </iframe>
 
     </form>
-    
 </div>
+
+
+@section Scripts
+{
+    <script src="~/js/SuperNovaTextEditor.js"></script>
+}
