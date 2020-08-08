@@ -70,12 +70,15 @@ namespace Doctrina___Web.Models
                 .Where(s => s.Creator == model.Creator && s.DateCreated == model.DateCreated && s.Title == model.Title)
                 .FirstOrDefault();
 
-            string filePath = Path.Combine(_hostingEnvironment.WebRootPath,
-                $"DynamicResources/groups/{model.GroupId}/{model.SectionId}/{result.Id}.html");
+            // WebRootPath is server-side path for displaying the file into the iframe
+            string webRootPath = $"~/DynamicResources/groups/{model.GroupId}/{model.SectionId}/{result.Id}.html";
+            // AbsolutePath is full path used for CRUD operations with file
+            string absolutePath = Path.Combine(_hostingEnvironment.WebRootPath, $"DynamicResources/groups/{model.GroupId}/{model.SectionId}/{result.Id}.html");
 
-            using (FileStream fs = File.Create(filePath)) { }
+            File.Create(absolutePath);
 
-            result.FilePath = filePath;
+            result.WebRootPath = webRootPath;
+            result.AbsolutePath = absolutePath;
 
             _db.DoctrinaScripts.Attach(result);
             _db.Entry(result).State = EntityState.Modified;
@@ -132,8 +135,8 @@ namespace Doctrina___Web.Models
         {
             DoctrinaScript script = _db.Find<DoctrinaScript>(id);
 
-            File.SetAttributes(script.FilePath, FileAttributes.Normal);
-            File.Delete(script.FilePath);
+            File.SetAttributes(script.AbsolutePath, FileAttributes.Normal);
+            File.Delete(script.AbsolutePath);
 
             _db.Remove<DoctrinaScript>(script);
             _db.SaveChanges();
