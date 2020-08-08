@@ -9,7 +9,7 @@ namespace Doctrina___Web.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DoctrinaGroup DoctrinaGroup { get; set; }
+        public virtual DoctrinaGroup DoctrinaGroup { get; set; }
 
     }
 }

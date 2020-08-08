@@ -1,5 +1,4 @@
-﻿@model HomeViewModel
-@inject SignInManager<DoctrinaUser> signInManager;
+﻿@inject SignInManager<DoctrinaUser> signInManager;
 @inject UserManager<DoctrinaUser> userManager;
 
 @{
@@ -52,24 +51,11 @@
                 <ul class="navbar-nav mr-auto">
                     @if (signInManager.IsSignedIn(User))
                     {
-                        <div class="input-group">
-                            <form method="POST" enctype="multipart/form-data">
-                                <input asp-for="@Model.Query" class="input-text-custom mr-sm-2" placeholder="Search for friends..." aria-label="Search" style="margin-right:0px !important;">
-                                <div class="input-group-append">
-                                    <button type="submit" asp-action="Search" asp-controller="Home" class="btn bg-gray70 text-white my-2 my-sm-0">
-                                       Search
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
                     }
                 </ul>
                 @if (signInManager.IsSignedIn(User))
                 {
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item text-white">
-                            <i class="fas fa-users"></i>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @currentUser.FirstName @currentUser.LastName
