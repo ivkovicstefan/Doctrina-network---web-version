@@ -3,6 +3,11 @@
     font-family: 'Ubuntu', sans-serif;
 }
 
+.doctrina-logo-small{
+    width:50px;
+    height:50px;
+}
+
 #navbar-logo {
     width: 100px;
     margin: 0px 20px 0px 0px;
@@ -14,27 +19,6 @@
     padding: 0.5rem 1rem 0.1rem 1rem;
     font-size: 15px;
     color: rgba(255,255,255,0.9) !important;
-}
-
-#login-register-box {
-    border-radius:10px;
-    padding:30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width:80%;
-    height:auto;
-    box-shadow:rgb(10, 10, 10) 0px 0px 15px;
-}
-
-.login-h{
-    position:absolute;
-    color:white;
-    font-size:25px;
-    top:33%;
-    left:50%;
-    transform:translate(-50%);
 }
 
 .input-text-custom {
