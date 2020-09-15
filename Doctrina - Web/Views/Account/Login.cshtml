@@ -2,28 +2,38 @@
 
 @{
     ViewBag.Title = "Log In - Doctrina";
+    Layout = "_Layout.cshtml";
 }
 
-
-<div id="login-register-box" class="bg-gray40">
-    <div class="row">
-        <div class="col-12">
-            <form method="POST" class="text-white">
+    <div class="container">
+        <div class="d-flex justify-content-center mt-5">
+            <img src="~/images/D logo.png" class="doctrina-logo-small" />
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <h3 class="text-white" style="font-weight:200; font-size:22px;">Log in to Doctrina</h3>
+        </div>
+        <div class="d-flex justify-content-center">
+            <form method="POST" class="login-register-box text-white">
                 <div asp-validation-summary="All"></div>
                 <div class="form-group">
-                    <label asp-for="UserName"></label>
+                    <label asp-for="UserName" class="l-rp"></label>
                     <input asp-for="UserName" class="form-control input-text-custom" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="Password"></label>
+                    <label asp-for="Password" class="l-rp"></label>
                     <input asp-for="Password" class="form-control input-text-custom" />
                 </div>
-                <div class="form-group">
-                    <label asp-for="RememberMe"></label>
-                    <input asp-for="RememberMe" class="form-control" />
+                <div class="form-check-inline mb-3">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="m-0 l-rp"></label>
+
                 </div>
-                <button type="submit" class="btn btn-primary">Log In</button>
+                <button type="submit" class="btn btn-primary w-100 btn-sm">Log In</button>
             </form>
         </div>
+        <div class="d-flex justify-content-center">
+            <div class="login-register-box mt-0">
+                <p class="text-white font-weight-lighter d-flex justify-content-center l-rp m-0">New to Doctrina?&nbsp;<a href="/account/register/" class="text-decoration-none text-purple">Create new account</a>.</p>
+            </div>
+        </div>
     </div>
-</div>
