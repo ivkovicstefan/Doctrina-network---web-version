@@ -32,9 +32,11 @@
     <link href="~/css/colorScheme.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
-<body>
+<body onload="CheckForValidation()">
     <div>
         @RenderBody()
     </div>
+
+    <script src="~/js/AccountValidation.js"></script>
 </body>
 </html>

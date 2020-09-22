@@ -13,47 +13,64 @@
             <h3 class="text-white" style="font-weight:200; font-size:22px;">Create a new account</h3>
         </div>
         <div class="d-flex justify-content-center">
-            <form method="POST" class="login-register-box text-white">
-                <div asp-validation-summary="All"></div>
-                <div class="form-group">
-                    <label asp-for="FirstName" class="l-rp"></label>
-                    <input asp-for="FirstName" class="form-control input-text-custom" />
+            <form method="POST" class="register-box text-white" onsubmit="return CheckTermsAndPrivacyPolicy()">
+                <div class="row">
+                    <div class="form-group p-2 col-sm-12 col-md-6" style="margin-bottom:0.4rem;">
+                        <label asp-for="FirstName" class="l-rp"></label>
+                        <input asp-for="FirstName" class="form-control input-text-custom" />
+                    </div>
+                    <div class="form-group p-2 col-sm-12 col-md-6" style="margin-bottom:0.4rem;">
+                        <label asp-for="LastName" class="l-rp"></label>
+                        <input asp-for="LastName" class="form-control input-text-custom" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="LastName" class="l-rp"></label>
-                    <input asp-for="LastName" class="form-control input-text-custom" />
+                <div class="row">
+                    <div class="form-group p-2 col-sm-12 col-md-6 position-relative" style="margin-bottom:0.4rem;">
+                        <label asp-for="UserName" class="l-rp"></label>
+                        <input asp-for="UserName" class="form-control input-text-custom" />
+                        <span class="validation-hint-box position-absolute" asp-validation-for="UserName"></span>
+                    </div>
+                    <div class="form-group p-2 col-sm-12 col-md-6" style="margin-bottom:0.4rem;">
+                        <label asp-for="Email" class="l-rp"></label>
+                        <input asp-for="Email" class="form-control input-text-custom" />
+                        <span class="validation-hint-box position-absolute" asp-validation-for="Email" class="l-rp"></span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="UserName" class="l-rp"></label>
-                    <input asp-for="UserName" class="form-control input-text-custom" />
-                    <span asp-validation-for="UserName"></span>
+                <div class="row">
+                    <div class="form-group p-2 col-sm-12 col-md-6" style="margin-bottom:0.4rem;">
+                        <label asp-for="Password" class="l-rp"></label>
+                        <input asp-for="Password" class="form-control input-text-custom" />
+                        <span class="validation-hint-box position-absolute" asp-validation-for="Password"></span>
+                    </div>
+                    <div class="form-group p-2 col-sm-12 col-md-6" style="margin-bottom:0.4rem;">
+                        <label asp-for="ConfirmPassword" class="l-rp"></label>
+                        <input asp-for="ConfirmPassword" class="form-control input-text-custom" />
+                        <span class="validation-hint-box position-absolute" asp-validation-for="ConfirmPassword"></span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="l-rp"></label>
-                    <input asp-for="Email" class="form-control input-text-custom" />
-                    <span asp-validation-for="Email" class="l-rp"></span>
+                <div class="row">
+                    <div class="form-group p-2 col-sm-12 col-md-6" style="margin-bottom:0.4rem;">
+                        <label asp-for="Country" class="l-rp"></label>
+                        <input asp-for="Country" class="form-control input-text-custom" />
+                    </div>
+                    <div class="form-group p-2 col-sm-12 col-md-6" style="margin-bottom:0.4rem;">
+                        <label asp-for="City" class="l-rp"></label>
+                        <input asp-for="City" class="form-control input-text-custom" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="l-rp"></label>
-                    <input asp-for="Password" class="form-control input-text-custom" />
+                <div class="row">
+                    <div id="termsAndPolicy" class="form-check-inline mb-0 p-2">
+                        <input type="checkbox" id="TermsAndPrivacyPolicy" name="TermsAndPrivacyPolicy" class="form-check-input" onclick="RemoveCheckBoxBorder()" />
+                        <label id="termsAndPolicyLabel" for="TermsAndPrivacyPolicy" class="m-0 l-rp">I agree to the Doctrina <a href="#">Terms of Service</a> and <a href="#">Privacy and policy</a>.</label>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="ConfirmPassword" class="l-rp"></label>
-                    <input asp-for="ConfirmPassword" class="form-control input-text-custom" />
+                <div class="row">
+                    <div class="col-sm-12 p-2"><button type="submit" class="btn btn-primary w-100 btn-sm">Register</button></div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Country" class="l-rp"></label>
-                    <input asp-for="Country" class="form-control input-text-custom" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="City" class="l-rp"></label>
-                    <input asp-for="City" class="form-control input-text-custom" />
-                </div>
-                <button type="submit" class="btn btn-primary w-100 btn-sm">Register</button>
             </form>
         </div>
         <div class="d-flex justify-content-center">
-            <div class="login-register-box mt-0">
+            <div class="register-box mt-0">
                 <p class="text-white font-weight-lighter d-flex justify-content-center l-rp m-0">Already a member?&nbsp;<a href="/account/login/" class="text-decoration-none text-purple">Log in</a>.</p>
             </div>
         </div>

@@ -3,13 +3,45 @@
     height:auto;
     padding:20px;
     margin:20px;
-    border-radius:5px;
+    border-radius:3px;
     background-color:rgb(45,45,45);
     border: 1px solid rgb(70,70,70);
 }
 
-.l-rp{
+.register-box {
+    width: 550px;
+    height: auto;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 3px;
+    background-color: rgb(45,45,45);
+    border: 1px solid rgb(70,70,70);
+}
+
+.error-box {
+    display: none;
+    width: 100%;
+    background-color: #ab0000;
+    color: white;
+    padding:5px;
+    border-radius: 5px;
+    text-align:center;
+}
+
+.validation-hint-box span {
+    border-radius: 4px;
+    padding: 3px;
+    background-color: #ffc107;
+    color:black;
+    font-size: 13px;
+}
+
+.error-box span{
     font-size:15px;
+}
+
+.l-rp {
+    font-size: 15px;
 }
 
 input:-webkit-autofill,

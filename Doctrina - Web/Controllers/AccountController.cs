@@ -31,7 +31,7 @@ namespace Doctrina___Web.Controllers
             }
             else
             {
-                return Json($"Email '{email}' is already taken.");
+                return Json($"Email is already taken.");
             }
         }
 
@@ -45,7 +45,7 @@ namespace Doctrina___Web.Controllers
             }
             else
             {
-                return Json($"Username '{userName}' is already taken.");
+                return Json($"Username is already taken.");
             }
         }
 

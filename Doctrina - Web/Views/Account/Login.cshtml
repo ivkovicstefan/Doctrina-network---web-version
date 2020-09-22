@@ -5,35 +5,41 @@
     Layout = "_Layout.cshtml";
 }
 
-    <div class="container">
-        <div class="d-flex justify-content-center mt-5">
-            <img src="~/images/D logo.png" class="doctrina-logo-small" />
-        </div>
-        <div class="d-flex justify-content-center mt-3">
-            <h3 class="text-white" style="font-weight:200; font-size:22px;">Log in to Doctrina</h3>
-        </div>
-        <div class="d-flex justify-content-center">
-            <form method="POST" class="login-register-box text-white">
-                <div asp-validation-summary="All"></div>
-                <div class="form-group">
-                    <label asp-for="UserName" class="l-rp"></label>
-                    <input asp-for="UserName" class="form-control input-text-custom" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="l-rp"></label>
-                    <input asp-for="Password" class="form-control input-text-custom" />
-                </div>
-                <div class="form-check-inline mb-3">
-                    <input asp-for="RememberMe" class="form-check-input" />
-                    <label asp-for="RememberMe" class="m-0 l-rp"></label>
-
-                </div>
-                <button type="submit" class="btn btn-primary w-100 btn-sm">Log In</button>
-            </form>
-        </div>
-        <div class="d-flex justify-content-center">
-            <div class="login-register-box mt-0">
-                <p class="text-white font-weight-lighter d-flex justify-content-center l-rp m-0">New to Doctrina?&nbsp;<a href="/account/register/" class="text-decoration-none text-purple">Create new account</a>.</p>
+<div class="container">
+    <div class="d-flex justify-content-center mt-5">
+        <img src="~/images/D logo.png" class="doctrina-logo-small" />
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <h3 class="text-white" style="font-weight:200; font-size:22px;">Log in to Doctrina</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        <form method="POST" class="login-register-box text-white">
+            <div id="validationSummary" asp-validation-summary="All" style="display:none;"></div>
+            <div id="errorMessageDiv" class="error-box mb-2">
+                <p class="mb-0">Email or password is incorrect. <i class="fas fa-frown-open"></i><br />
+                </p>
             </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="l-rp"></label>
+                <input asp-for="UserName" class="form-control input-text-custom" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="l-rp"></label>
+                <input asp-for="Password" class="form-control input-text-custom" />
+                <a href="#" style="font-size:small">I forgot my password</a>
+            </div>
+            
+            <div class="form-check-inline mb-3">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="m-0 l-rp"></label>
+
+            </div>
+            <button type="submit" class="btn btn-primary w-100 btn-sm">Log In</button>
+        </form>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="login-register-box mt-0">
+            <p class="text-white font-weight-lighter d-flex justify-content-center l-rp m-0">New to Doctrina?&nbsp;<a href="/account/register/" class="text-decoration-none text-purple">Create new account</a>.</p>
         </div>
     </div>
+</div>

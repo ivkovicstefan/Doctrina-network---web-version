@@ -32,7 +32,11 @@ namespace Doctrina___Web.ViewModels
         [DataType(DataType.Password)]
         [Compare("Password",ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        [Display(Name = "Country:")]
         public string Country { get; set; }
+        [Required]
+        [Display(Name = "City:")]
         public string City { get; set; }
     }
 }
