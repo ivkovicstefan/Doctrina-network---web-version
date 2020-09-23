@@ -40,11 +40,17 @@ body a {
     box-shadow: none !important;
 }
 
-.group-container{
-    background-color:rgba(40,40,40,1);
-    color:white;
-    padding:20px;
-    position:relative;
+.group-container {
+    background-color: rgb(45,45,45);
+    border: 1px solid rgb(70,70,70);
+    border-radius: 3px;
+    width: 100%;
+    color: white;
+    padding: 0px;
+}
+
+.group-container p{
+    font-size:14px;
 }
 
 .group-settings-container{
@@ -58,14 +64,24 @@ body a {
     z-index:999
 }
 
-@media (min-width: 576px) {
-    #login-register-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        width:400px;
+.btn-group{
+    border-radius: 0px 0px 3px 3px;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+@media(min-width:0px)
+{
+    .nav-item
+    {
+        padding-top:10px;
     }
+}
+
+@media (min-width: 576px) {
+
 }
 
 
@@ -75,7 +91,9 @@ body a {
 
 
 @media (min-width: 992px) {
-
+    .nav-item {
+        padding: 0px;
+    }
 }
 
 

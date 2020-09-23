@@ -4,26 +4,56 @@
     ViewBag.Title = $"{Model.FirstName} {Model.LastName}'s profile - Doctrina";
 }
 
-<div class="container">
-    <div class="row text-white">
-        <div class="col-sm-6 col-md-4 col-lg-3 pt-3 p-2">
-            <div class="bg-gray40 p-3">
-                <img asp-append-version="true" src="~/images/usernoimage.png" class="img-fluid" />
+    <div class="container">
+        <div class="row text-white">
+            <div class="col-12 col-md-5 col-lg-3 pt-3 p-2">
+                <div class="group-container row mr-0 ml-0">
+                    <div class="row mr-0 ml-0">
+                        <div class="col-3 col-md-12 p-0">
+                            <img asp-append-version="true" src="~/images/usernoimage.png" class="img-fluid p-2 bg-gray70" />
+                        </div>
+                        <div class="col-9 col-md-12 p-2">
+                            <h3 class="font-weight-light mb-1">@Model.FirstName @Model.LastName</h3>
+                            <p class="font-weight-light m-0">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                &nbsp;@Model.City , @Model.Country
+                            </p>
+                            <p class="font-weight-light m-0">
+                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                &nbsp;The School Of Electrical And Computer Enigneering
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row ml-0 mr-0 w-100">
+                        <div class="col-12 col-sm-12 p-0">
+                            @if (Model.UserName == User.Identity.Name)
+                            {
+                                <a href="#" class="btn btn-primary btn-sm w-100 btn-group text-center">
+                                    <i class="fas fa-pen"><span class="font-weight-light" style="font-family:Ubuntu;">&nbsp;&nbsp;Edit profile</span></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="#" class="btn btn-primary w-100 btn-group text-center">
+                                    <i class="fas fa-user-plus"><span class="font-weight-light" style="font-family:Ubuntu">&nbsp;&nbsp;Send friend request</span></i>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-        </div>
-        <div class="col-sm-6 col-md-8 col-lg-9 pt-3 p-2">
-            <div class="bg-gray40 p-3">
-                <h2>@Model.FirstName @Model.LastName</h2>
-                <p>@Model.City , @Model.Country</p>
-                @if(Model.UserName == User.Identity.Name)
-                {
-                    <p>Change info</p>
-                }
-                else
-                {
-
-                }
-            </div>
+            @if (Model.UserName == User.Identity.Name)
+            {
+                <div class="col-md-7 col-lg-9 pt-3 p-2 h-auto">
+                    <div class="bg-purple group-container p-2" style="border:1px solid  rgb(94, 0, 97)">
+                        <p class="font-weight-light m-0">
+                            <i class="fas fa-flag"></i>
+                            &nbsp;&nbsp;Do you provide services to other students as giving private lessons or doing projects for them?&nbsp;&nbsp;
+                            <a href="#" class="badge badge-light text-dark" style="font-size:13px">Create an advertisement!</a>
+                        </p>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-</div>

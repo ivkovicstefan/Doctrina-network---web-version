@@ -18,6 +18,14 @@
     background-color: rgba(20,20,20,1);
 }
 
+.bg-purple {
+    background-color: rgb(156, 0, 161) !important;
+}
+
 .text-purple {
     color: rgba(249, 71, 255,1);
+}
+
+.text-light-gray{
+    color:rgb(217, 217, 217);
 }
