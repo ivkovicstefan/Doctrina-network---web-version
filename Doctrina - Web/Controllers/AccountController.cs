@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Doctrina___Web.Models;
 using Doctrina___Web.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -14,11 +16,13 @@ namespace Doctrina___Web.Controllers
     {
         private readonly SignInManager<DoctrinaUser> _signInManager;
         private readonly UserManager<DoctrinaUser> _userManager;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public AccountController(SignInManager<DoctrinaUser> signInManager, UserManager<DoctrinaUser> userManager)
+        public AccountController(SignInManager<DoctrinaUser> signInManager, UserManager<DoctrinaUser> userManager, IHostingEnvironment hostingEnvironment)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [AcceptVerbs("GET","POST")]
@@ -107,6 +111,20 @@ namespace Doctrina___Web.Controllers
         {
             if(ModelState.IsValid)
             {
+                string uniqueFileName = null;
+                string filePath = null;
+
+                if(model.Photo != null)
+                {
+                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "DynamicResources/images/UserProfilePictures");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                    filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (FileStream fs = new FileStream(filePath, FileMode.Create))
+                    {
+                        model.Photo.CopyTo(fs);
+                    }
+                }
+
                 DoctrinaUser newUser = new DoctrinaUser
                 {
                     FirstName = model.FirstName,
@@ -114,7 +132,8 @@ namespace Doctrina___Web.Controllers
                     UserName = model.UserName,
                     Email = model.Email,
                     Country = model.Country,
-                    City = model.City
+                    City = model.City,
+                    PhotoPath = "~/DynamicResources/images/UserProfilePictures/" + uniqueFileName
                 };
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);

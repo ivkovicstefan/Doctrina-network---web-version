@@ -4,14 +4,16 @@ using Doctrina___Web.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Doctrina___Web.Migrations
 {
     [DbContext(typeof(DoctrinaDBContext))]
-    partial class DoctrinaDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200930152754_AddDoctrinaSchoolTable")]
+    partial class AddDoctrinaSchoolTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

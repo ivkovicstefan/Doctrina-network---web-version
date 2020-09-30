@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = $"{Model.FirstName} {Model.LastName}'s profile - Doctrina";
+
+    string photoPath = (Model.PhotoPath != null) ? Model.PhotoPath : "~/images/usernoimage.png";
 }
     <div class="container">
         <div class="row text-white">
@@ -9,7 +11,7 @@
                 <div class="group-container row mr-0 ml-0">
                     <div class="row mr-0 ml-0">
                         <div class="col-3 col-md-12 p-0">
-                            <img asp-append-version="true" src="~/images/usernoimage.png" class="img-fluid p-2 bg-gray70" />
+                            <img asp-append-version="true" src="@photoPath" class="img-fluid p-2 bg-gray70" />
                         </div>
                         <div class="col-9 col-md-12 p-2">
                             <h3 class="font-weight-light mb-1">@Model.FirstName @Model.LastName</h3>

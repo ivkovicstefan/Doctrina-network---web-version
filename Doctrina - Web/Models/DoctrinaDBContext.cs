@@ -22,6 +22,8 @@ namespace Doctrina___Web.Models
         public DbSet<DoctrinaGroupSection> DoctrinaGroupSections { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<DoctrinaScript> DoctrinaScripts { get; set; }
+        public DbSet<DoctrinaSchool> DoctrinaSchools { get; set; }
+        public DbSet<DoctrinaUserDoctrinaSchool> DoctrinaUserDoctrinaSchool { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -49,6 +51,16 @@ namespace Doctrina___Web.Models
                 .HasOne(f => f.User)
                 .WithMany(t => t.Friend)
                 .HasForeignKey(fk => fk.UserId);
+            builder.Entity<DoctrinaUserDoctrinaSchool>()
+                .HasKey(cs => new { cs.DoctrinaUserId, cs.DoctrinaSchoolId });
+            builder.Entity<DoctrinaUserDoctrinaSchool>()
+                .HasOne(us => us.DoctrinaUser)
+                .WithMany(u => u.DoctrinaUserDoctrinaSchools)
+                .HasForeignKey(us => us.DoctrinaUserId);
+            builder.Entity<DoctrinaUserDoctrinaSchool>()
+                .HasOne(us => us.DoctrinaSchool)
+                .WithMany(u => u.DoctrinaUserDoctrinaSchools)
+                .HasForeignKey(us => us.DoctrinaSchoolId);
             base.OnModelCreating(builder);
         }
     }

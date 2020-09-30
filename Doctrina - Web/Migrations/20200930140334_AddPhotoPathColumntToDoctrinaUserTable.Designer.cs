@@ -4,14 +4,16 @@ using Doctrina___Web.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Doctrina___Web.Migrations
 {
     [DbContext(typeof(DoctrinaDBContext))]
-    partial class DoctrinaDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200930140334_AddPhotoPathColumntToDoctrinaUserTable")]
+    partial class AddPhotoPathColumntToDoctrinaUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,26 +53,6 @@ namespace Doctrina___Web.Migrations
                     b.HasIndex("DoctrinaGroupId");
 
                     b.ToTable("DoctrinaGroupSections");
-                });
-
-            modelBuilder.Entity("Doctrina___Web.Models.DoctrinaSchool", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DoctrinaSchools");
                 });
 
             modelBuilder.Entity("Doctrina___Web.Models.DoctrinaScript", b =>
@@ -216,21 +198,6 @@ namespace Doctrina___Web.Migrations
                     b.HasIndex("DoctrinaGroupId");
 
                     b.ToTable("DoctrinaUserDoctrinaGroup");
-                });
-
-            modelBuilder.Entity("Doctrina___Web.Models.DoctrinaUserDoctrinaSchool", b =>
-                {
-                    b.Property<string>("DoctrinaUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("DoctrinaSchoolId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("DoctrinaUserId", "DoctrinaSchoolId");
-
-                    b.HasIndex("DoctrinaSchoolId");
-
-                    b.ToTable("DoctrinaUserDoctrinaSchool");
                 });
 
             modelBuilder.Entity("Doctrina___Web.Models.Friendship", b =>
@@ -417,21 +384,6 @@ namespace Doctrina___Web.Migrations
 
                     b.HasOne("Doctrina___Web.Models.DoctrinaUser", "DoctrinaUser")
                         .WithMany("DoctrinaUserDoctrinaGroups")
-                        .HasForeignKey("DoctrinaUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Doctrina___Web.Models.DoctrinaUserDoctrinaSchool", b =>
-                {
-                    b.HasOne("Doctrina___Web.Models.DoctrinaSchool", "DoctrinaSchool")
-                        .WithMany("DoctrinaUserDoctrinaSchools")
-                        .HasForeignKey("DoctrinaSchoolId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Doctrina___Web.Models.DoctrinaUser", "DoctrinaUser")
-                        .WithMany("DoctrinaUserDoctrinaSchools")
                         .HasForeignKey("DoctrinaUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
