@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -38,5 +39,7 @@ namespace Doctrina___Web.ViewModels
         [Required]
         [Display(Name = "City:")]
         public string City { get; set; }
+        [Display(Name = "Profile image:")]
+        public IFormFile Photo { get; set; }
     }
 }

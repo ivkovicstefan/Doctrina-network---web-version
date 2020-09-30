@@ -13,6 +13,7 @@ namespace Doctrina___Web.Models
         public string LastName { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
+        public virtual ICollection<DoctrinaUserDoctrinaSchool> DoctrinaUserDoctrinaSchools { get; set; }
         /// <summary>
         /// Navigation property for many-to-many relationship users-groups
         /// </summary>
@@ -25,6 +26,9 @@ namespace Doctrina___Web.Models
         /// Navigation property for many-to-many relationship users-users (friend of)
         /// </summary>
         public virtual ICollection<Friendship> FriendOf { get; set; }
-
+        /// <summary>
+        /// Absolute path to a profile image
+        /// </summary>
+        public string PhotoPath { get; set; }
     }
 }

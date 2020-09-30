@@ -3,6 +3,8 @@
 
 @{
     var currentUser = await userManager.GetUserAsync(User);
+
+    string photoPath = (currentUser.PhotoPath != null) ? currentUser.PhotoPath : "~/images/usernoimage.png";
 }
 
 <!DOCTYPE html>
@@ -54,7 +56,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" asp-action="Index" asp-controller="Profile" asp-route-userName="@User.Identity.Name">
-                             <img src="~/images/usernoimage.png" class="img-fluid bg-gray70 mr-2" style="height:20px; border-radius:5px; padding:1px; margin-top:-3px;"/>@currentUser.FirstName @currentUser.LastName
+                             <img asp-append-version="true" src="@photoPath" class="img-fluid bg-gray70 mr-2" style="height:20px; border-radius:5px; padding:1px; margin-top:-3px;"/>@currentUser.FirstName @currentUser.LastName
                             </a>
                         </li>
                         <li class="nav-item">
