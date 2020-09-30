@@ -3,10 +3,9 @@
 @{
     ViewBag.Title = $"{Model.FirstName} {Model.LastName}'s profile - Doctrina";
 }
-
     <div class="container">
         <div class="row text-white">
-            <div class="col-12 col-md-5 col-lg-3 pt-3 p-2">
+            <div class="col-12 col-md-5 col-lg-3 p-2 pt-3">
                 <div class="group-container row mr-0 ml-0">
                     <div class="row mr-0 ml-0">
                         <div class="col-3 col-md-12 p-0">
@@ -28,7 +27,7 @@
                         <div class="col-12 col-sm-12 p-0">
                             @if (Model.UserName == User.Identity.Name)
                             {
-                                <a href="#" class="btn btn-primary btn-sm w-100 btn-group text-center">
+                                <a href="#" class="btn btn-primary w-100 btn-group text-center">
                                     <i class="fas fa-pen"><span class="font-weight-light" style="font-family:Ubuntu;">&nbsp;&nbsp;Edit profile</span></i>
                                 </a>
                             }
@@ -39,13 +38,12 @@
                                 </a>
                             }
                         </div>
-                    </div>
-                    
+                    </div>  
                 </div>
             </div>
             @if (Model.UserName == User.Identity.Name)
             {
-                <div class="col-md-7 col-lg-9 pt-3 p-2 h-auto">
+                <div class="col-md-7 col-lg-9 p-2 pt-3">
                     <div class="bg-purple group-container p-2" style="border:1px solid  rgb(94, 0, 97)">
                         <p class="font-weight-light m-0">
                             <i class="fas fa-flag"></i>

@@ -1,40 +1,50 @@
 ﻿@model HomeViewModel
 
-
 <div class="container">
-    <div class="group-container mt-3 mb-3">
-        <div class="row">
-            <div class="col-12"><h5>My groups</h5></div>
-            <a asp-controller="Group" asp-action="MyGroups" class="btn btn-link">view all groups</a>
-        </div>
-        <div class="row">
-            @{ var i = 0; }
-            @foreach (var group in Model.Groups)
-            {
-                @if (i == 5)
-                {
-                    break;
-                }
+    <div class="row">
+        <div class="col-12 p-2 pt-3">
+            <div class="group-container row mr-0 ml-0">
+                <div class="col-12 bg-gray70 p-0">
 
-                i++;
-
-                <div class="col-sm-6 col-md-2 p-2">
-                    <a class="btn btn-dark w-100 pt-3 pb-3 pl-1 pr-1 mt-1" asp-controller="Group" asp-action="Index" asp-route-id="@group.Id">@group.Name</a>
+                    <div class="d-flex">
+                        <div class="mr-auto"><h5 class="pl-2 p-1 m-0 font-group-header"><i class="fas fa-user-friends"></i>&nbsp; My groups</h5></div>
+                        @if (Model.Groups.Any())
+                        {
+                            <div class="mr-1">
+                                <a class="badge badge-primary" style="font-size:13px" asp-controller="Group" asp-action="Create">+ New group</a>
+                                <a class="badge badge-info" style="font-size:13px" asp-controller="Group" asp-action="MyGroups">Explore groups</a>
+                            </div>
+                        }
+                    </div>
                 </div>
-            }
-
-            <div class="col-sm-6 col-md-2 p-2">
-                <a class="btn btn-light w-100 pt-3 pb-3 pl-1 pr-1 mt-1" asp-controller="Group" asp-action="Create">+ Create New Group</a>
+                <div class="col-12 p-0">
+                    <div class="row mr-0 ml-0">
+                        @if (Model.Groups.Any())
+                        {
+                            @foreach (var group in Model.Groups)
+                            {
+                                <div class="col-6 col-md-2 p-1">
+                                    <div class="group-badge-pill">
+                                        <a class="text-white text-decoration-none" asp-controller="Group" asp-action="Index" asp-route-id="@group.Id">
+                                            <div class="truncated">@group.Name</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                    <div class="col-12 p-2">
+                        <p class="m-0">
+                            You are not part of any group. You can&nbsp; 
+                            <a class="badge badge-primary" style="font-size:13px" asp-controller="Group" asp-action="Create">create new group</a>
+                            or <a class="badge badge-info" style="font-size:13px" asp-controller="Group" asp-action="MyGroups">explore groups</a> .
+                        </p>
+                    </div>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="group-container container mt-3 mb-3">
-        <div class="row">
-            <div class="col-12">
-              
-            </div>
-
-        </div>
-    </div>
-
 </div>
